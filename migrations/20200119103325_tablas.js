@@ -75,10 +75,7 @@
          t.integer('idPreguntas').notNullable().references('id').inTable('preguntasSeguridad');
          t.string('respuestas',100).notNullable();
       })
-
-
-
-
+      
    };
 
    exports.down = function(knex, Promise) {
