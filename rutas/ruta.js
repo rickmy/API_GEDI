@@ -5,5 +5,7 @@ let api = express.Router(),
   usuariosControl = require('../controles/crudUsuarios')
 
   api.post('/registro',usuariosControl.ingresarUsuario)
+  api.get('/prueba', pruebaControl.prueba)
+  
 
 module.exports = api

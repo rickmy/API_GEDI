@@ -32,18 +32,18 @@
          t.string('segundoNombre', 30).notNullable();
          t.string('primerApellido', 30).notNullable();
          t.string('segundoApellido', 30).notNullable();
-         t.integer('idRoles').references('id').inTable('rol');
+         t.integer('idRoles').references('id').inTable('roles');
          t.string('correo' ,100).notNullable();
          t.string('clave',50).notNullable();
          t.date('fechaRegistro').notNullable().defaultTo(knex.fn.now());
-         t.integer('idEstadoSesion').references('id').inTable('estadoSesion');
+         t.integer('idEstadoSesion').references('id').inTable('estadosSesion');
          t.boolean('estado').notNullable().defaultTo(true);
       })
 
       .createTable('carrerasUsuarios', function (t) {
          t.increments('id');
          t.integer('idCarrera').notNullable().references('id').inTable('carreras');
-         t.integer('idUsuario').notNullable().references('id').inTable('usuario');
+         t.integer('idUsuario').notNullable().references('id').inTable('usuarios');
       })
       
       .createTable('tipoDocumentos', function (t) {
@@ -54,7 +54,7 @@
 
       .createTable('documentos', function (t) {
          t.increments('id');
-         t.integer('idUsuario').notNullable().references('id').inTable('usuario');
+         t.integer('idUsuario').notNullable().references('id').inTable('usuarios');
          t.string('codigo',45).notNullable().unique();
          t.date('fechaElaboracion').notNullable().defaultTo(knex.fn.now());
          t.date('fechaModificacion').notNullable();

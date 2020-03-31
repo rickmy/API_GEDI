@@ -8,7 +8,7 @@ module.exports = {
         connection: {
                         host: '127.0.0.1', 
                         user: 'postgres', 
-                        password: '123456', 
+                        password: 'Rick08my12', 
                         database: 'GEDI'
                     }   
     },
@@ -19,7 +19,7 @@ module.exports = {
         connection: {
                         host: '127.0.0.1', 
                         user: 'postgres', 
-                        password: '123456', 
+                        password: 'Rick08my12', 
                         database: 'GEDI'
                     }   
     }
