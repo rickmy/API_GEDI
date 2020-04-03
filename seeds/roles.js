@@ -5,8 +5,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('roles').insert([
-        {rol: 'administrador'},
-        {rol: 'usuario'}
+        /*{rol: 'administrador'},
+        {rol: 'usuario'}*/
       ]);
     });
 };
