@@ -1,13 +1,13 @@
    ;
    exports.up = function(knex, Promise) {
       return knex.schema
-      /* .createTable('institutos', function (t) {
+      .createTable('institutos', function (t) {
          t.increments('id');
          t.date('created_at');
          t.date('updated_at');
          t.string('codigo',50);
          t.string('codigo_sniese',50).notNullable();
-         t.string('nombre, 200).notNullable();
+         t.string('nombre', 200).notNullable();
          t.string('estado',20).notNullable().defaultTo('ACTIVO');
       })
 
@@ -18,7 +18,7 @@
          t.integer('instituto_id').notNullable().references('id').inTable('institutos');
          t.string('codigo',50);
          t.string('codigo_sniese',50).notNullable();
-         t.string('nombre, 200).notNullable();
+         t.string('nombre', 200).notNullable();
          t.string('descripcion',200).notNullable();
          t.string('modalidad',50).notNullable();
          t.string('numero_resolucion',50);
@@ -27,11 +27,12 @@
          t.string('tipo_carrera',50).notNullable();
          t.string('estado',20).notNullable().defaultTo('ACTIVO');
       })
+      /* 
       .createTable('estadosSesion', function (t) {
          t.increments('id');
          t.string('estadoSesion',100).notNullable();
          t.boolean('estado').notNullable().defaultTo(true);
-      }) */
+      })  */
       
       .createTable('roles', function (t) {
          t.increments('id');
@@ -44,6 +45,7 @@
 
       .createTable('users', function (t) {
          t.increments('id');
+         t.string('codigo_user',50).unique().notNullable();
          t.integer('role_id').notNullable().references('id').inTable('roles');
          t.string('name',255).notNullable();
          t.string('user_name', 255).notNullable().unique();
@@ -56,13 +58,13 @@
          t.date('updated_at');
       })
 
-      /* .createTable('carrera_user', function (t) {
+      .createTable('carrera_user', function (t) {
          t.increments('id');
          t.date('created_at');
          t.date('updated_at');
          t.integer('user_id').notNullable().references('id').inTable('users');
          t.integer('carrera_id').notNullable().references('id').inTable('carreras');
-      }) */
+      }) 
       
       .createTable('tipoDocumentos', function (t) {
          t.increments('id');
@@ -101,9 +103,9 @@
       .dropTable("institutos")
       .dropTable("carreras")
       .dropTable('roles')
-      .dropTable('estadosSesion')
-      .dropTable("carrerasUsuario")
-      .dropTable("usuarios")
+      /* .dropTable('estadosSesion') */
+      .dropTable("carreras_user")
+      .dropTable("users")
       .dropTable("documentos")
       .dropTable("tipoDocumentos")
       .dropTable('preguntasSeguridad')
