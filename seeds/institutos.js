@@ -5,9 +5,9 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('institutos').insert([
-        {instituto: 'Instituto Superior Tecnológico de Turismo y Patrimonio Yavirac'},
+        /* {instituto: 'Instituto Superior Tecnológico de Turismo y Patrimonio Yavirac'},
         {instituto: 'Instituto Superior Tecnológico Gran Colombia'},
-        {instituto: 'Instituto Superior Tecnológico Benito Juárez'}
+        {instituto: 'Instituto Superior Tecnológico Benito Juárez'} */
       ]);
     });
 };

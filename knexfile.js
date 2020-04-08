@@ -9,7 +9,7 @@ module.exports = {
                         host: '127.0.0.1', 
                         user: 'postgres', 
                         password: 'Rick08my12', 
-                        database: 'GEDI'
+                        database: 'GEDIV2'
                     }   
     },
     production: {
@@ -20,7 +20,7 @@ module.exports = {
                         host: '127.0.0.1', 
                         user: 'postgres', 
                         password: 'Rick08my12', 
-                        database: 'GEDI'
+                        database: 'GEDIV2'
                     }   
     }
 

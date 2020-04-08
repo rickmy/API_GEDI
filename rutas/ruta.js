@@ -1,11 +1,17 @@
 ;
 const express = require('express')
-let api = express.Router(),
-  pruebaControl = require('../controles/prueba'),
+const multipart = require('connect-multiparty')
+let api = express.Router()
+  pruebaControl = require('../controles/prueba')
   usuariosControl = require('../controles/crudUsuarios')
+  pdfControl = require('../controles/crudPdf')
+  let multipartPdf = multipart()
 
   api.post('/registro',usuariosControl.ingresarUsuario)
   api.get('/prueba', pruebaControl.prueba)
+  api.post('/subir-pdf', multipartPdf ,pdfControl.subirPdf)
+  api.get('/ver-pdf/:id', pdfControl.verPdf)
+  api.get('/leerInstituto', usuariosControl.leerTabla)
   
 
 module.exports = api

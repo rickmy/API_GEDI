@@ -5,12 +5,12 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('tipoDocumentos').insert([
-        {descripcion: 'Acta'},
+        /* {descripcion: 'Acta'},
         {descripcion: 'Convocatoria'},
         {descripcion: 'Hoja de Vida'},
         {descripcion: 'Memoramdum'},
         {descripcion: 'Solicitud'},
-        {descripcion: 'Oficios'}
+        {descripcion: 'Oficios'} */
       ]);
     });
 };

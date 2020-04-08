@@ -5,8 +5,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('estadosSesion').insert([
-        {estadoSesion: 'conectado'},
-        {estadoSesion: 'desconectado'}
+        /* {estadoSesion: 'conectado'},
+        {estadoSesion: 'desconectado'} */
       ]);
     });
 };

@@ -5,11 +5,11 @@
     .then(function () {
       // Inserts seed entries
       return knex('carreras').insert([
-        /* {idInstituto:1 ,carreras:'Marketing'},
-        {idInstituto:1 ,carreras: 'Guía Nacional de Turismo'},
-        {idInstituto:1 ,carreras: 'Arte Culinario Ecuatoriano'},
-        {idInstituto:2 ,carreras: 'Diseño de Modas'},
-        {idInstituto:3 ,carreras: 'Desarrollo de Software'} */
+        {idInstituto:1 ,carrera:'Marketing'},
+        {idInstituto:1 ,carrera: 'Guía Nacional de Turismo'},
+        {idInstituto:1 ,carrera: 'Arte Culinario Ecuatoriano'},
+        {idInstituto:2 ,carrera: 'Diseño de Modas'},
+        {idInstituto:3 ,carrera: 'Desarrollo de Software'} 
       ]);
     });
 }; 

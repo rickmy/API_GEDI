@@ -1,50 +1,68 @@
    ;
    exports.up = function(knex, Promise) {
       return knex.schema
-      .createTable('institutos', function (t) {
+      /* .createTable('institutos', function (t) {
          t.increments('id');
-         t.string('instituto', 80).notNullable();
-         t.boolean('estado').notNullable().defaultTo(true);
+         t.date('created_at');
+         t.date('updated_at');
+         t.string('codigo',50);
+         t.string('codigo_sniese',50).notNullable();
+         t.string('nombre, 200).notNullable();
+         t.string('estado',20).notNullable().defaultTo('ACTIVO');
       })
 
       .createTable('carreras', function (t) {
          t.increments('id');
-         t.integer('idInstituto').notNullable().references('id').inTable('institutos')
-         t.string('carrera',100).notNullable();
-         t.boolean('estado').notNullable().defaultTo(true);
+         t.date('created_at');
+         t.date('updated_at');
+         t.integer('instituto_id').notNullable().references('id').inTable('institutos');
+         t.string('codigo',50);
+         t.string('codigo_sniese',50).notNullable();
+         t.string('nombre, 200).notNullable();
+         t.string('descripcion',200).notNullable();
+         t.string('modalidad',50).notNullable();
+         t.string('numero_resolucion',50);
+         t.string('titulo_otorga',200).notNullable();
+         t.string('siglas',50).notNullable();
+         t.string('tipo_carrera',50).notNullable();
+         t.string('estado',20).notNullable().defaultTo('ACTIVO');
       })
       .createTable('estadosSesion', function (t) {
          t.increments('id');
          t.string('estadoSesion',100).notNullable();
          t.boolean('estado').notNullable().defaultTo(true);
-      })
+      }) */
       
       .createTable('roles', function (t) {
          t.increments('id');
-         t.string('rol',40).notNullable();
-         t.boolean('estado').notNullable().defaultTo(true);
+         t.date('created_at');
+         t.date('updated_at');
+         t.string('descripcion',200).notNullable();
+         t.string('rol',200).notNullable();
+         t.string('estado',20).notNullable().defaultTo('ACTIVO');
       })
 
-      .createTable('usuarios', function (t) {
+      .createTable('users', function (t) {
          t.increments('id');
-         t.string('codigoUser',50).notNullable().unique();
-         t.string('primerNombre',30).notNullable();
-         t.string('segundoNombre', 30).notNullable();
-         t.string('primerApellido', 30).notNullable();
-         t.string('segundoApellido', 30).notNullable();
-         t.integer('idRoles').references('id').inTable('roles');
-         t.string('correo' ,100).notNullable();
-         t.string('clave',50).notNullable();
-         t.date('fechaRegistro').notNullable().defaultTo(knex.fn.now());
-         t.integer('idEstadoSesion').references('id').inTable('estadosSesion');
-         t.boolean('estado').notNullable().defaultTo(true);
+         t.integer('role_id').notNullable().references('id').inTable('roles');
+         t.string('name',255).notNullable();
+         t.string('user_name', 255).notNullable().unique();
+         t.string('email' ,255).notNullable().unique();
+         t.date('email_verified_at');
+         t.string('password',255).notNullable();
+         t.string('estado',20).notNullable().defaultTo('ACTIVO');
+         t.string('remember_token');
+         t.date('created_at');
+         t.date('updated_at');
       })
 
-      .createTable('carrerasUsuarios', function (t) {
+      /* .createTable('carrera_user', function (t) {
          t.increments('id');
-         t.integer('idCarrera').notNullable().references('id').inTable('carreras');
-         t.integer('idUsuario').notNullable().references('id').inTable('usuarios');
-      })
+         t.date('created_at');
+         t.date('updated_at');
+         t.integer('user_id').notNullable().references('id').inTable('users');
+         t.integer('carrera_id').notNullable().references('id').inTable('carreras');
+      }) */
       
       .createTable('tipoDocumentos', function (t) {
          t.increments('id');
@@ -54,13 +72,13 @@
 
       .createTable('documentos', function (t) {
          t.increments('id');
-         t.integer('idUsuario').notNullable().references('id').inTable('usuarios');
-         t.string('codigo',45).notNullable().unique();
-         t.date('fechaElaboracion').notNullable().defaultTo(knex.fn.now());
-         t.date('fechaModificacion').notNullable();
-         t.integer('idTipoDocumento').notNullable().references('id').inTable('tipoDocumentos');
-         t.string('path',150).notNullable();
-         t.boolean('estado').notNullable().defaultTo(true);
+         t.integer('idUsuario').references('id').inTable('users');
+         t.string('codigo',45).unique();
+         t.date('fechaElaboracion').defaultTo(knex.fn.now());
+         t.date('fechaModificacion');
+         t.integer('idTipoDocumento').references('id').inTable('tipoDocumentos');
+         t.string('path',150);
+         t.boolean('estado').defaultTo(true);
       })
 
       .createTable('preguntasSeguridad', function (t) {
@@ -71,7 +89,7 @@
 
       .createTable('preguntasUsuarios', function (t) {
          t.increments('id');
-         t.integer('idUsuario').notNullable().references('id').inTable('usuarios');
+         t.integer('user_id').notNullable().references('id').inTable('users');
          t.integer('idPreguntas').notNullable().references('id').inTable('preguntasSeguridad');
          t.string('respuestas',100).notNullable();
       })

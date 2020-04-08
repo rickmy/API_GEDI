@@ -23,8 +23,8 @@ let ingresarUsuario = (req, res) => {
     
 
 let leerTabla = (req, res) => {
-    let campos = req.body.campos
-    let tabla = req.body.tabla
+    let campos = '*'
+    let tabla = 'institutos'
     console.log(campos)
     console.log(tabla)
     db.select(campos).from(tabla)
