@@ -3,8 +3,61 @@ let config = require('../knexfile')
 let env = 'development'
 let db = require('knex')(config[env])
 let bcrypt=require('bcrypt')
+//CRUD Usuarios
+let leerUsuarios = (req, res) => {
+    //console.log('GetUsuarios')
+    db.select('*').from('users')
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
+let login = (request, response) => {
+    console.log('LOGIN',request.body.clave)
+    user=request.body.correo,
+    password=request.body.clave,
+    db.select('*').from('users')
+    .where({ email: request.body.correo,
+            user_name: request.body.clave })
+        .then(registros => { 
+            if (user==registros[0].email&&password==registros[0].user_name) {
+                console.log('Hola',user,registros[0].user_name);
+                return response.status(200).json(
+                registros
+            )
+            }     
+        })
+        .catch(error => {
+            return response.status(404).json({
+                datos: error
+            })
+        })
+  }
+
+let leerDocentes = (req, res) => {
+
+    db.select('*').from('users')
+    .where({ role_id:"7" })
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
 
 let ingresarUsuario = (req, res) => {
+    console.log('REGISTRAR!!')
     let campos = req.body.campos
     let tabla = 'usuario'
             db(tabla).insert(campos)
@@ -102,7 +155,10 @@ let modificarRegistro = (req, res) => {
 module.exports = {
    leerTabla,
    leerTablaId,
+   leerUsuarios,
+   leerDocentes,
    ingresarRegistro,
    modificarRegistro,
-   ingresarUsuario
+   ingresarUsuario,
+   login
 }
