@@ -63,17 +63,74 @@ let ingresarUsuario = (req, res) => {
             db(tabla).insert(campos)
             .then(resultado => {
             return res.status(200)
-            .json({mensaje:'uusuario registrrado'})
+                .json({ mensaje: 'usuario registrado' })
 
+        })
+        .catch((error) => {
+            return res.status(404).json({
+
+                mensaje: error
             })
-            .catch((error) => {
-                return res.status(404).json({
-                
-                    mensaje: error 
-                })
-            })
-        }
+        })
+}
     
+let leerUsuarios = (req, res) => {
+
+    db.select('*').from('usuarios')
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
+let leerRoles = (req, res) => {
+
+    db.select('*').from('roles')
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
+let leerInstitutos = (req, res) => {
+
+    db.select('*').from('institutos')
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
+let leerCarreras = (req, res) => {
+
+    db.select('*').from('carreras')
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
+
 
 let leerTabla = (req, res) => {
     let campos = '*'
