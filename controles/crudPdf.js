@@ -47,12 +47,20 @@ let verPdf = (req,res) =>{
 }
 
 let getPdf=(req,res)=>{
-    db.select('path').from('documentos')
+    let cond = req.body.cond//{"cond":"ACTA o Soli con =>% al final"}
+
+    db.select('*').from('documentos').where('codigo_documento','like',cond)
     .then(registros =>{
         return res.status(200).json({
             txt: true,
             datos:registros,
             msg: `${registros.length} registros encontrados`
+        })
+    })
+    .catch(error=>{
+        return res.status(404).json({
+            txt:false,
+            error
         })
     })
 }

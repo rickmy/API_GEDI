@@ -69,8 +69,8 @@
       .createTable('documentos', function (t) {
          t.increments('id');
          t.integer('idUsuario').references('id').inTable('users');
-         t.string('codigo_user',50).unique();
-         t.string('codigo_documento',50).unique();
+         t.string('codigo_user',50).notNullable();
+         t.string('codigo_documento',50).notNullable().unique();
          t.date('fechaElaboracion').defaultTo(knex.fn.now());
          t.date('fechaModificacion');
          t.string('path',250);

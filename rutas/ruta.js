@@ -21,7 +21,7 @@ let api = express.Router()
   api.post('/subir-pdf', multipartPdf ,pdfControl.subirPdf)
   api.get('/verpdf/:pdf', pdfControl.verPdf)
   //http://localhost:3000/server/verpdf/tQXtkSDmiOoBGBdxSBLgKxfn.pdf para que puedan probar con postman o desde el navegador 
-  api.get('/getPdf', pdfControl.getPdf)
+  api.post('/getPdf', pdfControl.getPdf)
   //api.get('/leerInstituto', usuariosControl.leerTabla)
   
 
