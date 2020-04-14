@@ -17,11 +17,7 @@
          t.date('updated_at');
          t.integer('instituto_id').notNullable().references('id').inTable('institutos');
          t.string('codigo',50);
-<<<<<<< HEAD
          t.string('codigo_sniese',50);
-=======
-         t.string('codigo_sniese',50).notNullable();
->>>>>>> 1e9fefc41dfae7d2a8bc7511325e639330b82b59
          t.string('nombre', 200).notNullable();
          t.string('descripcion',200).notNullable();
          t.string('modalidad',50).notNullable();
@@ -49,11 +45,7 @@
 
       .createTable('users', function (t) {
          t.increments('id');
-<<<<<<< HEAD
          t.string('codigo_user',50).unique();
-=======
-         t.string('codigo_user',50).unique().notNullable();
->>>>>>> 1e9fefc41dfae7d2a8bc7511325e639330b82b59
          t.integer('role_id').notNullable().references('id').inTable('roles');
          t.string('name',255).notNullable();
          t.string('user_name', 255).notNullable().unique();
@@ -73,15 +65,6 @@
          t.integer('user_id').notNullable().references('id').inTable('users');
          t.integer('carrera_id').notNullable().references('id').inTable('carreras');
       }) 
-<<<<<<< HEAD
-=======
-      
-      .createTable('tipoDocumentos', function (t) {
-         t.increments('id');
-         t.string('descripcion',50).notNullable();
-         t.boolean('estado').notNullable().defaultTo(true);
-      })
->>>>>>> 1e9fefc41dfae7d2a8bc7511325e639330b82b59
 
       .createTable('documentos', function (t) {
          t.increments('id');
@@ -118,7 +101,6 @@
       .dropTable("carreras_user")
       .dropTable("users")
       .dropTable("documentos")
-      .dropTable("tipoDocumentos")
       .dropTable('preguntasSeguridad')
       .dropTable('preguntasUsuarios')
    };
