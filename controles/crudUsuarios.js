@@ -150,11 +150,39 @@ let leerRoles = (req, res) => {
 }
 let leerInstitutos = (req, res) => {
 
-    db.select('*').from('institutos')
+    let idIng = req.body.id
+
+
+    db.select('carrera_id').from('carrera_user').where({user_id:idIng})
         .then(registros => {
-            return res.status(200).json(
-                registros
-            )
+            let carrera = registros[0].carrera_id
+            //console.log(carrera)
+            
+            db.select('instituto_id').from('carreras').where({id:carrera})
+            .then( resultado =>{
+                //console.log(resultado[0])
+                let inst = resultado[0].instituto_id
+
+                db.select('nombre').from('institutos').where({id:inst})
+                .then( registro =>{
+                    //console.log(registro[0].nombre)
+                    return res.status(200).json(
+                        registro[0].nombre
+                    )
+                })
+                .catch(error => {
+                    return res.status(404).json({
+                        datos: error
+                    })
+                })
+
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    datos: error
+                })
+            })
+
         })
         .catch(error => {
             return res.status(404).json({

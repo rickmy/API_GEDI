@@ -76,7 +76,7 @@
          t.string('path',250);
          t.boolean('estado').defaultTo(true);
       })
-
+/* 
       .createTable('preguntasSeguridad', function (t) {
          t.increments('id');
          t.string('preguntaSeguridad',100).notNullable();
@@ -88,7 +88,7 @@
          t.integer('user_id').notNullable().references('id').inTable('users');
          t.integer('idPreguntas').notNullable().references('id').inTable('preguntasSeguridad');
          t.string('respuestas',100).notNullable();
-      })
+      }) */
       
    };
 
@@ -100,7 +100,7 @@
       /* .dropTable('estadosSesion') */
       .dropTable("carreras_user")
       .dropTable("users")
-      .dropTable("documentos")
+      .dropTable("documentos")/* 
       .dropTable('preguntasSeguridad')
-      .dropTable('preguntasUsuarios')
+      .dropTable('preguntasUsuarios') */
    };
