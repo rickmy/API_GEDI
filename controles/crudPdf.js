@@ -69,6 +69,7 @@ updatePdf= async (req, res) => {
     let cod = req.body.cod
     let files = req.files.upload
     let url = files.path
+    let fecha = new Date()
     console.log(url)
     urlPdf = url.split('\\')
     console.log('---------------')
@@ -76,8 +77,9 @@ updatePdf= async (req, res) => {
     pathPdf = urlPdf[1]
     console.log(pathPdf)
     console.log(cod)
+    console.log(fecha)
 
-    await db('documentos').where('codigo_documento',cod).update({path:pathPdf}).
+    await db('documentos').where('codigo_documento',cod).update({path:pathPdf,fechaModificacion:fecha}).
     then(resultado =>{
         return res.status(200).json({
             txt: true,
@@ -90,7 +92,7 @@ updatePdf= async (req, res) => {
             txt:false,
             error
         })
-    })
+    }) 
 
 
 }
