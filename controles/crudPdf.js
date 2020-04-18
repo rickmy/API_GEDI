@@ -7,6 +7,11 @@ let path = require('path')
 
 
 let subirPdf =async (req, res) => {
+    let idUser = req.body.idUser
+    let codUser = req.body.codUser
+    let codDoc = req.body.codDoc
+    
+    console.log(idUser,codDoc,codUser)
     let files = req.files.upload
     let url = files.path
     console.log(url)
@@ -15,7 +20,28 @@ let subirPdf =async (req, res) => {
     console.log(urlPdf[1])
     pathPdf = urlPdf[1]
     console.log(pathPdf)
-    let datos = [{idUsuario:1,codigo_user:'S001',codigo_documento:'ACTA-ISTBJ-2020-001',path:pathPdf}]
+    
+    if( codUser === undefined){
+        let datos = [{idUsuario:idUser,codigo_documento:codDoc,path:pathPdf}]
+        console.log(datos)
+        await db('documentos').insert(datos).then(registros =>{
+            return res.status(200).json({
+                ok: true,
+                mensaje: 'documento guardado correctamente'
+            })
+        })
+        .catch(error =>{
+           
+            return res.status(500).json({
+                ok: false,
+                error
+            })
+        })
+        
+    } else {
+
+        let datos = [{idUsuario:idUser,codigo_user:codUser,codigo_documento:codDoc,path:pathPdf}]
+        console.log(datos)
 
     await db('documentos').insert(datos).then(registros =>{
         return res.status(200).json({
@@ -29,7 +55,8 @@ let subirPdf =async (req, res) => {
             ok: false,
             error
         })
-    })
+    }) 
+    }
     
 }
 

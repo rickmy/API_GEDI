@@ -151,21 +151,21 @@ let leerRoles = (req, res) => {
 let leerInstitutos = (req, res) => {
 
     let idIng = req.body.id
-
+    console.log(idIng)
 
     db.select('carrera_id').from('carrera_user').where({user_id:idIng})
         .then(registros => {
             let carrera = registros[0].carrera_id
-            //console.log(carrera)
+            console.log(carrera)
             
             db.select('instituto_id').from('carreras').where({id:carrera})
             .then( resultado =>{
-                //console.log(resultado[0])
+                console.log(resultado[0].instituto_id)
                 let inst = resultado[0].instituto_id
 
                 db.select('nombre').from('institutos').where({id:inst})
                 .then( registro =>{
-                    //console.log(registro[0].nombre)
+                    console.log(registro[0].nombre)
                     return res.status(200).json(
                         registro[0].nombre
                     )
