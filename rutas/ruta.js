@@ -24,6 +24,7 @@ let api = express.Router()
   api.post('/getPdf', pdfControl.getPdf)
   api.put('/putPdf', pdfControl.updatePdf)
   api.put('/deletePdf', pdfControl.deletePdf)
+  api.get('/eliminarPdf', pdfControl.eliminarPdf)
   //api.get('/leerInstituto', usuariosControl.leerTabla)
   
 

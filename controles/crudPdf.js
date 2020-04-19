@@ -73,6 +73,18 @@ let verPdf = (req,res) =>{
     })
 }
 
+let eliminarPdf= (req,res) =>{
+    let pdf = 'AIQffAjTyo3ir0qmpuxGUwip.pdf'
+    let rutaPdf = `./pdfDirectorio/${pdf}`
+
+    fs.unlink(rutaPdf, (error) =>{
+        if(error){
+            throw error;
+        }
+        console.log('pdf eliminado')
+    })
+}
+
 let getPdf=(req,res)=>{
     let cond = req.body.cond//{"cond":"ACTA o Soli con =>% al final"}
 
@@ -93,7 +105,9 @@ let getPdf=(req,res)=>{
 }
 
 updatePdf= async (req, res) => {
+    
     let cod = req.body.cod
+    //let pdf = req.body.path
     let files = req.files.upload
     let url = files.path
     let fecha = new Date()
@@ -106,7 +120,21 @@ updatePdf= async (req, res) => {
     console.log(cod)
     console.log(fecha)
 
-    await db('documentos').where('codigo_documento',cod).update({path:pathPdf,fechaModificacion:fecha}).
+    
+    await db.select('path').from('documentos').where({codigo_documento:cod})
+    .then(registro =>{
+        let pdf = registro[0].path
+        console.log(pdf)
+        let rutaPdf = `./pdfDirectorio/${pdf}`
+
+    fs.unlink(rutaPdf, (error) =>{
+        if(error){
+            throw error;
+        }
+        console.log('pdf eliminado')
+    })
+
+    db('documentos').where('codigo_documento',cod).update({path:pathPdf,fechaModificacion:fecha}).
     then(resultado =>{
         return res.status(200).json({
             txt: true,
@@ -120,6 +148,13 @@ updatePdf= async (req, res) => {
             error
         })
     }) 
+    })
+    .catch(error =>{
+        return res.status(404).json({
+            txt:false,
+            error
+        })
+    })
 
 
 }
@@ -152,6 +187,7 @@ module.exports ={
     verPdf,
     getPdf,
     updatePdf,
-    deletePdf
+    deletePdf,
+    eliminarPdf
 
 }
