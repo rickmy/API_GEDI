@@ -31,15 +31,11 @@ haremos un git remote set-url origin 'tu repositorio'
 y seguimos con el git add . , el commit y el push 
 para volver a subir cambios a heroku colocamos el heroku git:remote -a 'el nombre de tu app'
 
-
-
-
-
-
-
-
-
-
+nota dos: para enlazar el pgAdmin con la base de heroku 
+haremos lo siguiente crearemos un nuevo servidor 
+ahora nos dirijimos a la pagina de heroku y a add-ons y aharemos click sobre el 
+nos abrira otra ventana y nosdirijimos al settings y ver credenciales 
+ahi colocaremos el host, el nombre de la bdd, el user y el password con estos datos llenaremso los campos del formulario de pgAdmin
 
 ejemplos de git: https://github.com/johnazre/deploy-to-heroku-express-knex
 videos de referencia:
