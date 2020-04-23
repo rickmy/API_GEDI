@@ -6,10 +6,11 @@ module.exports = {
         seeds: { tableName: './seeds' },
         client: 'pg',
         connection: {
-                        host: 'ec2-54-152-175-141.compute-1.amazonaws.com', 
-                        user: 'bpdtfcwmjjsixc', 
-                        password: '43837469421c75a9b59a438847e62b3d2fd04ef163f0273a8bd41cb743a66e28', 
-                        database: 'dcgf4godj25duh'
+                        host: 'localhost', 
+                        port :'5432',
+                        user: 'uxteqgfeiclzfw', 
+                        password: 'b67ce2a53f4d49babe9dba76df45b6d6c4ef13d1bae9ac6a8335c4902b100d4b', 
+                        database: 'dfsj6rb0gu2t1j'
                     }   
     },
     production: {
@@ -17,10 +18,11 @@ module.exports = {
         seeds: { tableName: './seeds' },
         client: 'pg',
         connection: {
-                        host: 'ec2-54-152-175-141.compute-1.amazonaws.com', 
-                        user: 'bpdtfcwmjjsixc', 
-                        password: '43837469421c75a9b59a438847e62b3d2fd04ef163f0273a8bd41cb743a66e28', 
-                        database: 'dcgf4godj25duh'
+                        host: 'localhost',
+                        port :'5432', 
+                        user: 'uxteqgfeiclzfw', 
+                        password: 'b67ce2a53f4d49babe9dba76df45b6d6c4ef13d1bae9ac6a8335c4902b100d4b', 
+                        database: 'dfsj6rb0gu2t1j'
                     }   
     }
 
