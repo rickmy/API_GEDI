@@ -16,4 +16,8 @@ app.use(cors())
 
 app.use('/server', rutas)
 
-module.exports = app
+let port = process.env.PORT || 3000
+
+app.listen(port, () => {
+  console.log(`El servicio está funcionando en el puerto ${ port }`)
+})
