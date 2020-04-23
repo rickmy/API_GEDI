@@ -76,19 +76,6 @@
          t.string('path',250);
          t.boolean('estado').defaultTo(true);
       })
-/* 
-      .createTable('preguntasSeguridad', function (t) {
-         t.increments('id');
-         t.string('preguntaSeguridad',100).notNullable();
-         t.boolean('estado').notNullable().defaultTo(true)
-      })
-
-      .createTable('preguntasUsuarios', function (t) {
-         t.increments('id');
-         t.integer('user_id').notNullable().references('id').inTable('users');
-         t.integer('idPreguntas').notNullable().references('id').inTable('preguntasSeguridad');
-         t.string('respuestas',100).notNullable();
-      }) */
       
    };
 
