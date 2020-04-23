@@ -26,13 +26,7 @@
          t.string('siglas',50).notNullable();
          t.string('tipo_carrera',50).notNullable();
          t.string('estado',20).notNullable().defaultTo('ACTIVO');
-      })
-      /* 
-      .createTable('estadosSesion', function (t) {
-         t.increments('id');
-         t.string('estadoSesion',100).notNullable();
-         t.boolean('estado').notNullable().defaultTo(true);
-      })  */
+      }) 
       
       .createTable('roles', function (t) {
          t.increments('id');
