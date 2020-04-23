@@ -75,13 +75,10 @@
 
    exports.down = function(knex, Promise) {
       return knex.schema
-      /*.dropTable("institutos")
+      .dropTable("institutos")
       .dropTable("carreras")
       .dropTable('roles')
-       .dropTable('estadosSesion') 
       .dropTable("carreras_user")
       .dropTable("users")
-      .dropTable("documentos") 
-      .dropTable('preguntasSeguridad')
-      .dropTable('preguntasUsuarios') */
+      .dropTable("documentos")
    };
