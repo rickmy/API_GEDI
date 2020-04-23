@@ -5,7 +5,7 @@ const express = require('express'),
   multipart = require('connect-multiparty')
 
 let app = express(),
-  rutas = require('../rutas/ruta')
+  rutas = require('./rutas/ruta')
 
 
 app.use(bodyParser.urlencoded({extended:true}))
