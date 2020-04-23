@@ -15,7 +15,7 @@
          t.increments('id');
          t.date('created_at');
          t.date('updated_at');
-         t.integer('instituto_id').notNullable().references('id').inTable('institutos');
+         t.integer('instituto_id')//.notNullable().references('id').inTable('institutos');
          t.string('codigo',50);
          t.string('codigo_sniese',50);
          t.string('nombre', 200).notNullable();
@@ -46,7 +46,7 @@
       .createTable('users', function (t) {
          t.increments('id');
          t.string('codigo_user',50).unique();
-         t.integer('role_id').notNullable().references('id').inTable('roles');
+         t.integer('role_id').notNullable()//.references('id').inTable('roles');
          t.string('name',255).notNullable();
          t.string('user_name', 255).notNullable().unique();
          t.string('email' ,255).notNullable().unique();
@@ -62,13 +62,13 @@
          t.increments('id');
          t.date('created_at');
          t.date('updated_at');
-         t.integer('user_id').notNullable().references('id').inTable('users');
-         t.integer('carrera_id').notNullable().references('id').inTable('carreras');
+         t.integer('user_id').notNullable()//.references('id').inTable('users');
+         t.integer('carrera_id').notNullable()//.references('id').inTable('carreras');
       }) 
 
       .createTable('documentos', function (t) {
          t.increments('id');
-         t.integer('idUsuario').references('id').inTable('users');
+         t.integer('idUsuario')//.references('id').inTable('users');
          t.string('codigo_user',50);
          t.string('codigo_documento',50).notNullable().unique();
          t.date('fechaElaboracion').defaultTo(knex.fn.now());
