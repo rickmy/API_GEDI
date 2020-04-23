@@ -1,0 +1,47 @@
+para crear y subir el proyecto en heroku (knex,express, nodejs, postgres)
+
+previamente tener descargados(npm, knex y git)
+
+1. Creamos el proyecto en la pag de heroku una vez inicada sesion
+2. descargamos el hereoku cli 
+3. ingresamos al cmd con la ruta del proyecto
+4. colocamos el comando: heroku login
+5. una vez que logeados 
+6. colocamos el siguientes comando: git init
+7. el git add .
+8. el git commit -m "ready for Heroku"
+9. heroku git:remote -a "nombre de la app" 
+10. y por ultimo el git push heroku master
+11. eso se realizara para la primera suida del proyecto luego solo se nesecitara git add . , el commit y el push
+12. añadimos un addons desde la pagina de heroku dentro del proyecto 
+13. en la pestaña Resours en add-ons escribiremos heroku postgres escojemos el plan que deseamos y lo añadimos
+14. una vez realizados esto nos dirijimos a la pestaña settings y buscamos congif vars y sabremos la url de la base de datos 
+15. en el archivo knexfile.js en production colocamos en connection lo siguiente: process.env.DATABASE_URL con esto se obtenbra y se se conectara con la base de datos generad en heroku
+16. y para el development en connection colocaremos directamente la url de la base de datos
+17. con la antigua version tebemos separados los archivos app.js y index.js, esto tendra que unirse y el archivo sacar de la carpeta setup ademas dentro del app.js en el requier ruta eliminar un punto 
+18. creamos un archivo llamado Procfile
+19. colocaremos lo siguiente: web: knex migrate:rollback && knex migrate:latest && node app.js pára asi pueda ejecutarse el servidor y si nesecitamos que se suban las semillas de knex solo aumentariamos knex seed:run antes del node siempre con &&
+20. una vez realizados estos cambios ejecutaremos un push y en la pagina de heroku con nuestra app buscaremos la pestaña more y selecionaremos view logs para observar como se inicia el server y si da alguna errore
+21. si sale error verificaremos que se realizaron las migraciones ya que al momento de volverle a subir esto nos arrojara otro error con lo cual en el archivo Procfile cambiaremos por web: node app.js para que se pueda iniciar el server y volvemos hacer un push
+22. ya sin errores dentro la pagina de heroku haremos click en open app y haremos las pruebas respenctiva con las rutas generadas.
+
+
+nota: para poder subir a tu repositorio 
+haremos un git remote set-url origin 'tu repositorio'
+y seguimos con el git add . , el commit y el push 
+para volver a subir cambios a heroku colocamos el heroku git:remote -a 'el nombre de tu app'
+
+
+
+
+
+
+
+
+
+
+
+ejemplos de git: https://github.com/johnazre/deploy-to-heroku-express-knex
+videos de referencia:
+ * https://www.youtube.com/watch?v=CCHQpkc10s4&feature=youtu.be
+ * https://www.youtube.com/watch?v=MxfxiR8TVNU&feature=youtu.be

@@ -73,17 +73,6 @@ let verPdf = (req,res) =>{
     })
 }
 
-let eliminarPdf= (req,res) =>{
-    let pdf = 'AIQffAjTyo3ir0qmpuxGUwip.pdf'
-    let rutaPdf = `./pdfDirectorio/${pdf}`
-
-    fs.unlink(rutaPdf, (error) =>{
-        if(error){
-            throw error;
-        }
-        console.log('pdf eliminado')
-    })
-}
 
 let getPdf=(req,res)=>{
     let cond = req.body.cond//{"cond":"ACTA o Soli con =>% al final"}
@@ -188,6 +177,5 @@ module.exports ={
     getPdf,
     updatePdf,
     deletePdf,
-    eliminarPdf
 
 }
