@@ -315,19 +315,7 @@ let modificarRegistro = (req, res) => {
         })
 }
 
-getDocumentos =(req,res )=>{
-    db.select('*').from('documentos').where({estado:true})
-    .then(registros =>{
-        return res.status(200).json(
-            registros
-        )
-    })
-    .catch(error =>{
-        return res.status(404).json({
-            datos :error
-        })
-    })
-}
+
 
 module.exports = {
     leerRoles,
@@ -342,6 +330,5 @@ module.exports = {
     login,
     findById,
     updateById,
-    leerCarrerasxUsuario,
-    getDocumentos
+    leerCarrerasxUsuario
 }

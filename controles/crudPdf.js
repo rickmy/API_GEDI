@@ -168,7 +168,33 @@ deletePdf = (req,res) =>{
         
 }
     
+TraerPdf =(req,res)=>{
+    cod = req.body.codigoDoc
 
+    db.select('*').from('documentos').where({codigo_documento:cod}).andWhere({estado:true})
+    .then(registro =>{
+        return res.status(200).json(
+            registros
+        )
+    })
+    .catch(error =>{
+        datos: error
+    })
+}
+
+getDocumentos =(req,res )=>{
+    db.select('*').from('documentos').where({estado:true})
+    .then(registros =>{
+        return res.status(200).json(
+            registros
+        )
+    })
+    .catch(error =>{
+        return res.status(404).json({
+            datos :error
+        })
+    })
+}
 
 module.exports ={
 
@@ -177,5 +203,6 @@ module.exports ={
     getPdf,
     updatePdf,
     deletePdf,
-
+    TraerPdf,
+    getDocumentos
 }
