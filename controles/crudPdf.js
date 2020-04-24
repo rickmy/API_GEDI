@@ -178,7 +178,9 @@ TraerPdf =(req,res)=>{
         )
     })
     .catch(error =>{
-        datos: error
+        res.status(404).json({
+            datos: error
+        })
     })
 }
 
