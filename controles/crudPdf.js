@@ -174,7 +174,7 @@ TraerPdf =(req,res)=>{
     db.select('*').from('documentos').where({codigo_documento:cod}).andWhere({estado:true})
     .then(registro =>{
         return res.status(200).json(
-            registros
+            registro
         )
     })
     .catch(error =>{
@@ -183,7 +183,7 @@ TraerPdf =(req,res)=>{
 }
 
 getDocumentos =(req,res )=>{
-    db.select('*').from('documentos').where({estado:true})
+    db.select('*').from('documentos').where({estado:true}).orderBy('id')
     .then(registros =>{
         return res.status(200).json(
             registros
