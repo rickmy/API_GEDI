@@ -6,7 +6,7 @@ let bcrypt = require('bcrypt')
 //CRUD Usuarios
 let leerUsuarios = (req, res) => {
     //console.log('GetUsuarios')
-    db.select('*').from('users')
+    db.select('*').from('users').orderBy('id')
         .then(registros => {
             return res.status(200).json(
                 registros
