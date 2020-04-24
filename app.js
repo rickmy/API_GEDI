@@ -12,15 +12,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 
 app.use(multipart({uploadDir:'./pdfDirectorio'}))
-/* app.use(cors()) */
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'XMLHttpRequest','Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method')
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-  res.header('Allow', 'GET, POST, PUT, DELETE')
-  next()
-})
+app.use(cors())
 
 app.use('/server', rutas)
 
