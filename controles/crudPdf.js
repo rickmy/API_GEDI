@@ -15,10 +15,10 @@ let subirPdf =async (req, res) => {
     let files = req.files.upload
     let url = files.path
     console.log(url)
-    urlPdf = url.split('\\')
+    urlPdf = url.split('/')
     console.log('---------------')
     console.log(urlPdf[1])
-    pathPdf = urlPdf[1]
+    let pathPdf = urlPdf[1]
     console.log(pathPdf)
     
     if( codUser === undefined){
