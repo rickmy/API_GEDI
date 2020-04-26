@@ -168,7 +168,7 @@ deletePdf = (req,res) =>{
         
 }
     
-TraerPdf =(req,res)=>{
+traerPdf =(req,res)=>{
     cod = req.body.codigoDoc
 
     db.select('*').from('documentos').where({codigo_documento:cod}).andWhere({estado:true})
@@ -205,6 +205,6 @@ module.exports ={
     getPdf,
     updatePdf,
     deletePdf,
-    TraerPdf,
+    traerPdf,
     getDocumentos
 }
