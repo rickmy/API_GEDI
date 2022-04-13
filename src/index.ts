@@ -2,7 +2,7 @@ import express from 'express';
 
 const app = express()
 
-const routesUser = require('../routes/users')
+const routesUser = require('../src/routes/users')
 
 app.use(express.json());
 app.use('/api',routesUser);

@@ -1,10 +1,6 @@
-import {Prisma, PrismaClient} from '@prisma/client'
 import express from 'express';
-import {throws} from "assert";
-
-const prisma = new PrismaClient();
+import
 const app = express.Router();
-
 
 app.post('/signup', async (req, res) => {
   const {name, email, posts, profile} = req.body;
@@ -32,10 +28,10 @@ app.post('/signup', async (req, res) => {
   res.json(result)
 });
 
-app.get('/users', async (req,res)=>{
-  const users = await prisma.user.findMany();
+app.get('/user', async (req,res)=>{
+
   if(!users){
-    return res.status(404).json('users not found');
+    return res.status(404).json('user not found');
   }
 
   return res.json(users);
