@@ -1,11 +1,12 @@
 import express from 'express';
-
+const userController = require  ('./user/userController');
+const authController = require  ('./auth/auth.router');
 const app = express()
 
-const routesUser = require('../src/routes/users')
 
 app.use(express.json());
-app.use('/api',routesUser);
+app.use('/api/',userController);
+app.use('/api/',authController);
 
 
 const server = app.listen(3000,()=>{
