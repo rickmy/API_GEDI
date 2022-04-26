@@ -3,7 +3,14 @@ const bcrypt = require('bcrypt');
 
 export const allUsers =  ()=>{
 
-  return prisma.user.findMany();
+  return prisma.user.findMany({select:{
+    password: false,
+    id:true,
+    email:true,
+    refreshTokens: false,
+    createdAt:false,
+    updatedAt: false,
+  }});
 
 }
 
