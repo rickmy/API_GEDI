@@ -1,7 +1,5 @@
 import {prisma} from './../utils/prisma';
 const bcrypt = require('bcrypt');
-import {Request, Response} from "express";
-import {UserInfo} from "os";
 
 export const allUsers =  ()=>{
 

@@ -1,10 +1,13 @@
-import express from 'express';
-import * as userService from './userService';
-import {isAuthenticated} from "../middlewares/auth.middlewar";
+import express, { Request, Response } from 'express';
+import { isAuthenticated } from '../middlewares/auth.middlewar';
+import { allUsers } from './userService';
 const app = express.Router();
 
 
-app.get('/users',isAuthenticated, userService.allUsers);
+app.get('/users',isAuthenticated,async (req: Request, res: Response) => {
+  const usersDB = await allUsers();
+  return res.json(usersDB);
+});
 /*
 app.get('/user/:userId', async (req, res)=>{
   console.log('req',req.params['userId']);
