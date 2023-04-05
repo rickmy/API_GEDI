@@ -6,25 +6,76 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
-  id            String         @id @unique @default(uuid())
-  email         String         @unique
-  password      String
-  refreshTokens RefreshToken[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id              Int         @id @default(autoincrement())
+  userCode        String      @unique @default(uuid())
+  username        String      @unique
+  name            String?
+  lastName        String?
+  email           String      @unique
+  emailCode       String?      @unique @default(uuid())
+  emailVerifiedAt DateTime?
+  password        String
+  state           Boolean     @default(true)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  role            Role        @relation(fields: [roleId], references: [id])
+  roleId          Int
+  Institute       Institute?  @relation(fields: [instituteId], references: [id])
+  instituteId     Int?
+  Documents       Documents[]
 }
 
-model RefreshToken {
-  id          String   @id @unique @default(uuid())
-  hashedToken String
-  userId      String
-  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  revoked     Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model Institute {
+  id        Int      @id @default(autoincrement())
+  name      String
+  code      String   @unique
+  state     Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User[]
+  Career    Career[]
 }
 
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  state     Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User[]
+}
+
+model Career {
+  id          Int       @id @default(autoincrement())
+  acronym     String    @unique
+  code        String    @unique
+  modality    Modality  @default(PRESENCIAL)
+  name        String    @unique
+  state       Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  institutes  Institute @relation(fields: [instituteId], references: [id])
+  instituteId Int
+}
+
+model Documents {
+  id        Int      @id @default(autoincrement())
+  path      String
+  code      String   @unique
+  state     Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+enum Modality {
+  PRESENCIAL
+  VIRTUAL
+  DISTANCIA
+}

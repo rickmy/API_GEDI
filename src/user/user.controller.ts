@@ -1,12 +1,18 @@
 import express, { Request, Response } from 'express';
 import { isAuthenticated } from '../middlewares/auth.middlewar';
-import { allUsers } from './userService';
-const app = express.Router();
+import userService from './user.service';
+const userController = express.Router();
 
 
-app.get('/users',isAuthenticated,async (req: Request, res: Response) => {
-  const usersDB = await allUsers();
+userController.get('/',isAuthenticated,async (req: Request, res: Response) => {
+  const usersDB = await userService.allUsers();
   return res.json(usersDB);
+});
+
+userController.get('/:userId',isAuthenticated,async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  if(!userId) return res.status(404).json('param not found');
+  return res.json(await userService.findUserById(Number(userId)));
 });
 /*
 app.get('/user/:userId', async (req, res)=>{
@@ -24,4 +30,4 @@ app.get('/user/:userId', async (req, res)=>{
   return res.status(202).json(userDB);
 })*/
 
-module.exports = app;
+export default userController;
