@@ -1,16 +1,19 @@
-import { PrismaClient, Prisma } from '@prisma/client'
-
-const prisma = new PrismaClient();
-
+import { PrismaClient } from '@prisma/client'
+import roleSeed from './seeds/role.seed'
+import instituteSeed from './seeds/institutes.seed';
+import careerSeed from './seeds/career.seed';
+const prisma = new PrismaClient()
 async function main() {
+    await roleSeed();
+    await instituteSeed();
+    await careerSeed();
 }
-
 main()
-    .catch((e) => {
+    .then(async () => {
+        await prisma.$disconnect()
+    })  
+    .catch(async (e) => {
         console.error(e)
+        await prisma.$disconnect()
         process.exit(1)
     })
-    .finally(async () => {
-        await prisma.$disconnect()
-    })
-

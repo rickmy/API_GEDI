@@ -28,7 +28,7 @@ const authService = {
   },
 
   async loginUser(email: string, password: string) {
-    if (!email || !password) throw ('You must provide an email and a password.');
+    if (!email || !password) throw ('Correo o contraseña incorrectos.');
 
     const userExist = await userService.findUserByEmail(email);
     if (!userExist) throw ('email not found.');

@@ -15,10 +15,10 @@ authController.post('/register', async (req: Request, res: Response) => {
 authController.post('/login', async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
-    return res.json(await authService.loginUser(email, password));
+    return res.send(await authService.loginUser(email, password));
   }
   catch (error) {
-    return res.status(400).json(error);
+    return res.status(400).json({ message: error });
   }
 });
 
