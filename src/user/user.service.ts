@@ -11,10 +11,20 @@ const userService = {
     });
   },
   async findUserById(userId: number) {
-    return await prisma.user.findUnique({ where: { id: userId } });
+    return await prisma.user.findUnique({ where: { id: userId },
+    include:{
+      role: true,
+      career: true,
+      Documents:true
+    } });
   },
   async findUserByEmail(userEmail: string) {
-    return await prisma.user.findUnique({ where: { email: userEmail } });
+    return await prisma.user.findUnique({where: { email: userEmail },
+    include:{
+      role: true,
+      career: true,
+      Documents:true
+    }});
   },
 
   async createUser(email: string, password: string) {
