@@ -15,7 +15,7 @@ export const isAuthenticated = (
   jwt.verify(token, process.env.JWT_ACCESS_SECRET, (err: any, user: any) => {
     if (err) {
       console.log("error", err);
-      return res.status(403).json('"🚫 Un-Authorized 🚫"');
+      return res.status(401).json('"🚫 Un-Authorized 🚫"');
     }
     next();
   });

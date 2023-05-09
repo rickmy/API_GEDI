@@ -8,5 +8,6 @@ export class DocumentEntity implements Documents {
   createdAt: Date
   updatedAt: Date
   userId: number
+  documentsTypeId: number
   destinataries: string;
 }
